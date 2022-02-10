@@ -1,0 +1,14 @@
+{
+  "name": "5-server",
+  "version": "1.0.0",
+  "description": "En enkel webbserver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Mrkoci",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
