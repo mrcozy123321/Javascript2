@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router()
+const todoModel = require('../models/todoModel')
 
 
 
+router.post('/', todoModel.saveTodo);
 
-router.get('/', (req, res) => {
-  res.send({todo: 'todooo'})
-})
+router.get('/', todoModel.getTodos);
 
-router.post('/', (req, res) => {
-  res.send({todo: 'skapa en ny todo'})
-})
+router.patch('/:id', todoModel.updateTodo);
 
-router.delete('/:id', (req, res) => {
-  res.send({todo: 'ta bort en todo' + req.params.id})
-})
+router.delete('/:id', todoModel.deleteTodo);
+
+
+
 
 module.exports = router;
