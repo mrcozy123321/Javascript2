@@ -7,5 +7,7 @@ router.post('/', todosModel.createNewTodo);
 
 router.patch('/:id', todosModel.updateTodo);
 
+router.delete('/:id', todosModel.deleteTodo);
+
 module.exports = router;
 
