@@ -21,6 +21,10 @@
   aspect-ratio: 1;
 }
 
+.fa-trash {
+  cursor: pointer;
+}
+
 .animate {
   animation: slide-in 350ms ease-out;
 }

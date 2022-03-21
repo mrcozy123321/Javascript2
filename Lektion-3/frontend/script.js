@@ -4,20 +4,26 @@ const todoForm = document.querySelector('#todoForm');
 
 const myModal = document.querySelector('#addTodo');
 const addTodoModal = new bootstrap.Modal(myModal);
+const errorModal = new bootstrap.Modal(document.querySelector('#errorModal'));
+const noTodosText = document.querySelector('#noTodosText');
 
 
 
-
-
-// let todos = [];
+let todos = [];
 
 const fetchTodos = async () => {
   const res = await fetch('http://localhost:8080/api/todos');
   const data = await res.json();
 
+  todos = data;
+
+  if(todos.length <= 0) {
+    noTodosText.classList.remove('d-none')
+  }
+
   // todos = data;
   // console.log(todos);
-  listTodos(data);
+  listTodos(todos);
 }
 
 const listTodos = (_todos) => {
@@ -26,7 +32,7 @@ const listTodos = (_todos) => {
       // output.insertAdjacentHTML('beforeend', createTodoElement(todo))
       // addRemoveOnClick(todo);
       // addToggleComplete(todo)
-      createTodoElement(todo, output, 'beforeend', false)
+      createTodoElement(todo, output, 'beforeend', false);
   })
 }
 
@@ -36,7 +42,8 @@ const addRemoveOnClick = todo => {
       deleteTodo(todo);
     }
     else {
-      // Error modal
+      document.querySelector('#errorModalLabel').innerText = 'You need to complete the todo first!'
+      errorModal.show()
     }
   })
 }
@@ -78,6 +85,7 @@ const deleteTodo = async todo => {
     const todoElement = document.querySelector(`#todo_${data.id}`);
     todoElement.addEventListener('animationend', () => {
       todoElement.remove();
+      todos = todos.filter(todo => todo._id !== data.id)
     })
     todoElement.classList.add('slideout');
   }
@@ -111,6 +119,8 @@ const AddNewTodo = title => {
   .then(res => res.json())
   .then(data => {
     createTodoElement(data, output, 'beforeend', true)
+    todos.push(data)
+    noTodosText.classList.add('d-none')
   })
   .catch(err => console.log(err))
 }
