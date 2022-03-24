@@ -1,0 +1,10 @@
+@import "./default.css";
+
+.headline {
+  font-size: 1.5rem;
+  margin-block: 1rem;
+}
+
+.login-card {
+  max-width: 500px;
+}
