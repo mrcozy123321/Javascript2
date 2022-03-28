@@ -1,18 +1,21 @@
 const router = require('express').Router();
+const productModel = require('../models/products/productModel');
+const auth = require('../authentication/auth');
 
 // Get all products
-// router.get('/', )
+router.get('/', productModel.getProducts);
 
 // Get one product by id
-// router.get('/:id')
+router.get('/:id', productModel.getProductById);
 
 // Create new product
-// router.post('/')
+router.post('/', auth.verifyToken, productModel.createProduct);
 
 // Update a product
-// router.patch('/:id')
+router.patch('/:id', auth.verifyToken, productModel.updateProduct);
+router.put('/:id', auth.verifyToken, productModel.updateProduct);
 
 // Delete a product
-// router.delete('/:id')
+router.delete('/:id', auth.verifyToken, productModel.deleteProduct);
 
 module.exports = router;
