@@ -9,7 +9,7 @@
 import Navbar from './components/navigation/Navbar.vue'
 import Footer from './components/navigation/Footer.vue'
 import Carousel from './components/Carousel.vue'
-import Testimonials from './components/Testimonials/Testimonial.vue'
+import Testimonials from './components/Testimonials/Testimonials.vue'
 export default {
   name: 'App',
   components: {
